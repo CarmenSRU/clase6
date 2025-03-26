@@ -12,6 +12,12 @@ class Medicamento:
         self.__nombre = med 
     def asignarDosis(self,med):
         self.__dosis = med 
+    def verificarRepeticionMedicamento(self, medicamento, lista):
+        for m in lista:
+            if m == medicamento:
+                return True
+        return False
+    
         
 class Mascota:
     
@@ -116,11 +122,16 @@ def main():
 
                 for i in range(0,nm):
                     nombre_medicamentos = input("Ingrese el nombre del medicamento: ")
+                    if medicamento.verificarRepeticionMedicamento(medicamento, lista_med) == True:
+                        print("Ha repetido un medicamento")
+                        continue
                     dosis =int(input("Ingrese la dosis: "))
                     medicamento = Medicamento()
                     medicamento.asignarNombre(nombre_medicamentos)
                     medicamento.asignarDosis(dosis)
                     lista_med.append(medicamento)
+                    
+                    
 
                 mas= Mascota()
                 mas.asignarNombre(nombre)
