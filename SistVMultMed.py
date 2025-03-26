@@ -127,14 +127,15 @@ def main():
 
                 for i in range(0,nm):
                     nombre_medicamentos = input("Ingrese el nombre del medicamento: ")
-                    if medicamento.verificarRepeticionMedicamento(medicamento, lista_med) == True:
+                    medicamento = Medicamento()
+                    if medicamento.verificarRepeticionMedicamento(nombre_medicamentos, lista_med) == True:
                         print("Ha repetido un medicamento")
                         continue
                     dosis =int(input("Ingrese la dosis: "))
-                    medicamento = Medicamento()
+                    
                     medicamento.asignarNombre(nombre_medicamentos)
                     medicamento.asignarDosis(dosis)
-                    lista_med.append(medicamento)
+                    lista_med.append(nombre_medicamentos)
                     
                     
 
