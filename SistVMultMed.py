@@ -110,7 +110,12 @@ def main():
             if servicio_hospitalario.verNumeroMascotas() >= 10:
                 print("No hay espacio ...") 
                 continue
-            historia=int(input("Ingrese la historia clínica de la mascota: "))
+            while True:
+                try:
+                    historia=int(input("Ingrese la historia clínica de la mascota: "))
+                    break
+                except:
+                    print("No ingresó un número válido")
             #   verificacion=servicio_hospitalario.verDatosPaciente(historia)
             if servicio_hospitalario.verificarExiste(historia) == False:
                 nombre=input("Ingrese el nombre de la mascota: ")
