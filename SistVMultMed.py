@@ -63,6 +63,8 @@ class Mascota:
             except:
                 print("Ingrese el formato adecuado")
                 return False
+    def eliminarMed(self,a):
+        self.remove(a)
     
 class sistemaV:
     def __init__(self):
@@ -102,6 +104,13 @@ class sistemaV:
                 self.__lista_mascotas.remove(masc)  #opcion con el pop
                 return True  #eliminado con exito
         return False 
+    def eliminarMedicamento(self, med,his):
+        for m in self.__lista_mascotas:
+            medic = self.verMedicamentos(his)
+            for med in medic:
+                m.remove(med)  #opcion con el pop
+                return True  #eliminado con exito
+        return False 
 
 def main():
     servicio_hospitalario = sistemaV()
@@ -117,7 +126,8 @@ def main():
                        \n3- Ver número de mascotas en el servicio 
                        \n4- Ver medicamentos que se están administrando
                        \n5- Eliminar mascota 
-                       \n6- Salir 
+                       \n6- Eliminar medicamento 
+                       \n7- Salir 
                        \nUsted ingresó la opción: ''' )
         if menu=="1": # Ingresar una mascota 
             if servicio_hospitalario.verNumeroMascotas() >= 10:
@@ -202,7 +212,17 @@ def main():
             else:
                 print("No se ha podido eliminar la mascota")
         
-        elif menu=="6":
+        elif menu == "6":
+            hist = input("Ingrese la historia a eliminar")
+            existe = servicio_hospitalario.verificarExiste(hist) 
+            if existe == True: 
+                med = input("Ingrese medicamento a eliminar")
+                med = servicio_hospitalario.__lista_mascotas
+
+            else:
+                print("La historia clínica ingresada no corresponde con ninguna mascota en el sistema.")
+        
+        elif menu=="7":
             print("Usted ha salido del sistema de servicio de hospitalización...")
             break
         
