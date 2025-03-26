@@ -1,4 +1,4 @@
-import datetime
+from datetime import *
 class Medicamento:
     def __init__(self):
         self.__nombre = "" 
@@ -55,6 +55,14 @@ class Mascota:
         self.__fecha_ingreso=f
     def asignarLista_Medicamentos(self,n):
         self.__lista_medicamentos = n 
+    def verificarFecha(self, fecha):
+        while True:
+            try:
+                x = datetime.strptime(fecha, "%d/%m/%Y")
+                return True
+            except:
+                print("Ingrese el formato adecuado")
+                return False
     
 class sistemaV:
     def __init__(self):
@@ -123,10 +131,16 @@ def main():
                     print("No ingresó un número válido")
             #   verificacion=servicio_hospitalario.verDatosPaciente(historia)
             if servicio_hospitalario.verificarExiste(historia) == False:
+                mas= Mascota()
                 nombre=input("Ingrese el nombre de la mascota: ")
                 tipo=input("Ingrese el tipo de mascota (felino o canino): ")
                 peso=int(input("Ingrese el peso de la mascota: "))
-                fecha=input("Ingrese la fecha de ingreso (dia/mes/año): ")
+                
+                while True:
+                    fecha=input("Ingrese la fecha de ingreso (dia/mes/año): ")
+                    if mas.verificarFecha(fecha):
+                        mas.asignarFecha(fecha)
+                        break
                 nm=int(input("Ingrese cantidad de medicamentos: "))
                 lista_med=[]
 
@@ -144,13 +158,12 @@ def main():
                     
                     
 
-                mas= Mascota()
+                
                 mas.asignarNombre(nombre)
                 mas.asignarHistoria(historia)
                 mas.asignarPeso(peso)
                 mas.asignarTipo(tipo)
                 tipoDic[tipo] = {historia: mas}
-                mas.asignarFecha(fecha)
                 mas.asignarLista_Medicamentos(lista_med)
                 servicio_hospitalario.ingresarMascota(mas)
 
