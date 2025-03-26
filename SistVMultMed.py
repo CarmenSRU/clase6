@@ -96,6 +96,10 @@ class sistemaV:
 
 def main():
     servicio_hospitalario = sistemaV()
+    tipo = {
+    "caninos": {},
+    "felinos": {}
+    }
     # sistma=sistemaV()
     while True:
         menu=input('''\nIngrese una opción: 
